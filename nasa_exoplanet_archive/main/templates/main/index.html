@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<title>NASA Exoplanets Archive</title>
+	</head>
+	<body>
+		<table>
+		<tr>
+			<td>Host name</td>
+			<td>Discovery year</td>
+			<td>Discovery method</td>
+			<td>Light years</td>
+			<td>Planet mass</td>
+			<td>Discovery facility</td>
+		</tr>
+		{% for planet_data in exoplanets_list %}
+			<tr>
+				<td>{{ planet_data.host_name }}</td>
+				<td>{{ planet_data.discovery_year }}</td>
+				<td>{{ planet_data.discovery_method }}</td>
+				<td>{{ planet_data.light_years }}</td>
+				<td>{{ planet_data.planet_mass|stringformat:".2e" }}</td>
+				<td>{{ planet_data.discovery_facility }}</td>
+			</tr>
+		{% endfor %}
+		</table>
+	</body>
+</html>
