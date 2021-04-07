@@ -1,100 +1,28 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<!-- Required meta tags -->
+	<!-- Required meta tags -->
     	<meta charset="utf-8">
     	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     	<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-		<style type="text/css">
-			button {
-	  			margin-right: 5px;
-			}
-			tr {
-				text-align: center;
-			}
-			#button-up {
-				
-			}
-			#discovery-year {
-				position: relative;
-				top: 8px;
-				left: 30px;
-			}
-			.arrow {
-			  border: solid black;
-			  border-width: 0 3px 3px 0;
-			  display: inline-block;
-			  padding: 3px;
-			}
-
-			.up {
-			  transform: rotate(-135deg);
-			  -webkit-transform: rotate(-135deg);
-			}
-
-			.down {
-			  transform: rotate(45deg);
-			  -webkit-transform: rotate(45deg);
-			}
-		</style>
-
-		<title>NASA Exoplanets Archive</title>
+	<title>NASA Exoplanets Archive</title>
 	</head>
 	<body>
 
-		<table class="table table-bordered table-hover table-fit table-dark">
-			<form method="post" action="">
-			  {% csrf_token %}
-			  <thead>
-			    <tr>
-			      <th scope="col">
-			      	<span id="host-name">Host name</span>
-			      </th>
-			      <th scope="col">
-				      <span id="discovery-year">Discovery year</span>
-				      <div class="btn-group float-right" role="group">
-					  	<button id="button-up" type="submit" class="btn btn-primary" name="sort-by-year-asc" value="sort-by-year-asc">
-					  		<i class="arrow up"></i>
-					  	</button>
-					  	<button type="submit" class="btn btn-danger" name="sort-by-year-desc" value="sort-by-year-desc">
-					  		<i class="arrow down"></i>
-					  	</button>
-					  </div>
-			  	  </th>
-			      <th scope="col">
-			      	<span id="discovery-method">Discovery method</span>
-			      </th>
-			      <th scope="col">
-				      <span id="light-years">Light years</span>
-				      <div class="btn-group float-right" role="group">
-					  	<button type="submit" class="btn btn-primary" name="sort-by-light-years-asc" value="sort-by-light-years-asc">
-					  		<i class="arrow up"></i>
-					  	</button>
-					  	<button type="submit" class="btn btn-danger" name="sort-by-light-years-desc" value="sort-by-light-years-desc">
-					  		<i class="arrow down"></i>
-					  	</button>
-					  </div>
-			  	  </th>
-			      <th scope="col">
-				      <span id="planet-mass">Planet mass</span>
-				      <div class="btn-group float-right" role="group">
-					  	<button type="submit" class="btn btn-primary" name="sort-by-mass-asc"  value="sort-by-mass-asc">
-					  		<i class="arrow up"></i>
-					  	</button>
-					  	<button type="submit" class="btn btn-danger" name="sort-by-mass-desc" value="sort-by-mass-desc">
-					  		<i class="arrow down"></i>
-					  	</button>
-					  </div>
-			      </th>
-			      <th scope="col">
-			      	<span id="discovery-facility">Discovery facility</span>
-			      </th>
-			    </tr>
-			  </thead>
-			</form>
+		<table class="table table-bordered table-fit table-dark">
+		  <thead>
+		    <tr>
+		      <th scope="col">Host name</th>
+		      <th scope="col">Discovery year</th>
+		      <th scope="col">Discovery method</th>
+		      <th scope="col">Light years</th>
+		      <th scope="col">Planet mass</th>
+		      <th scope="col">Discovery facility</th>
+		    </tr>
+		  </thead>
 		  <tbody>
 		  	{% for planet_data in exoplanets_list %}
 		  		<tr>
@@ -112,5 +40,6 @@
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	
 	</body>
 </html>
