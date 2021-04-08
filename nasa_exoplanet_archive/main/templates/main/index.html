@@ -1,114 +1,75 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	<!-- Required meta tags -->
+		<!-- Required meta tags -->
     	<meta charset="utf-8">
     	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-	<style type="text/css">
-			button {
-	  			margin-right: 5px;
+		<style type="text/css">
+			.btn-sm {
+				background-color: transparent;
+				border-color: transparent;
+				color: silver;
 			}
-			tr {
-				text-align: center;
+			.arrow-up {
+				transform: rotate(180deg);
 			}
-			#button-up {
-				
+			.non-sortable {
+				padding-top: 3px;
 			}
-			#discovery-year {
-				position: relative;
-				top: 8px;
-				left: 30px;
+			.border {
+				border-color: #4F5458 !important;
 			}
-			.arrow {
-			  border: solid black;
-			  border-width: 0 3px 3px 0;
-			  display: inline-block;
-			  padding: 3px;
+			.col:hover {
+				background-color: #6E767F;
 			}
-
-			.up {
-			  transform: rotate(-135deg);
-			  -webkit-transform: rotate(-135deg);
-			}
-
-			.down {
-			  transform: rotate(45deg);
-			  -webkit-transform: rotate(45deg);
+			.table-header div {
+				font-weight: bold;
 			}
 		</style>
 
 		<title>NASA Exoplanets Archive</title>
-	<title>NASA Exoplanets Archive</title>
 	</head>
 	<body>
 
-		<table class="table table-bordered table-hover table-fit table-dark">
+		<div class="container-fluid bg-dark text-light">
 			<form method="post" action="">
-			  {% csrf_token %}
-			  <thead>
-			    <tr>
-			      <th scope="col">
-			      	<span id="host-name">Host name</span>
-			      </th>
-			      <th scope="col">
-				      <span id="discovery-year">Discovery year</span>
-				      <div class="btn-group float-right" role="group">
-					  	<button id="button-up" type="submit" class="btn btn-primary" name="sort-by-year-asc" value="sort-by-year-asc">
-					  		<i class="arrow up"></i>
-					  	</button>
-					  	<button type="submit" class="btn btn-danger" name="sort-by-year-desc" value="sort-by-year-desc">
-					  		<i class="arrow down"></i>
-					  	</button>
-					  </div>
-			  	  </th>
-			      <th scope="col">
-			      	<span id="discovery-method">Discovery method</span>
-			      </th>
-			      <th scope="col">
-				      <span id="light-years">Light years</span>
-				      <div class="btn-group float-right" role="group">
-					  	<button type="submit" class="btn btn-primary" name="sort-by-light-years-asc" value="sort-by-light-years-asc">
-					  		<i class="arrow up"></i>
-					  	</button>
-					  	<button type="submit" class="btn btn-danger" name="sort-by-light-years-desc" value="sort-by-light-years-desc">
-					  		<i class="arrow down"></i>
-					  	</button>
-					  </div>
-			  	  </th>
-			      <th scope="col">
-				      <span id="planet-mass">Planet mass</span>
-				      <div class="btn-group float-right" role="group">
-					  	<button type="submit" class="btn btn-primary" name="sort-by-mass-asc"  value="sort-by-mass-asc">
-					  		<i class="arrow up"></i>
-					  	</button>
-					  	<button type="submit" class="btn btn-danger" name="sort-by-mass-desc" value="sort-by-mass-desc">
-					  		<i class="arrow down"></i>
-					  	</button>
-					  </div>
-			      </th>
-			      <th scope="col">
-			      	<span id="discovery-facility">Discovery facility</span>
-			      </th>
-			    </tr>
-			  </thead>
+				{% csrf_token %}
+				<div class="row table-header">
+					<div class="col text-center non-sortable border">Host name</div>
+					<div class="col text-center sortable border">
+						Discovery year
+						<button type="submit" class="btn-sm dropdown-toggle arrow-up"   name="sort-by-year-asc" value="sort-by-year-asc"></button>
+						<button type="submit" class="btn-sm dropdown-toggle arrow-down" name="sort-by-year-desc" value="sort-by-year-desc"></button>
+					</div>
+					<div class="col text-center non-sortable border">Discovery method</div>
+					<div class="col text-center sortable border">
+						Light years
+						<button type="submit" class="btn-sm dropdown-toggle arrow-up"   name="sort-by-light-years-asc"  value="sort-by-light-years-asc"></button>
+						<button type="submit" class="btn-sm dropdown-toggle arrow-down" name="sort-by-light-years-desc" value="sort-by-light-years-desc"></button>
+					</div>
+					<div class="col text-center sortable border">
+						Planet mass
+						<button type="submit" class="btn-sm dropdown-toggle arrow-up"   name="sort-by-mass-asc"  value="sort-by-mass-asc"></button>
+						<button type="submit" class="btn-sm dropdown-toggle arrow-down" name="sort-by-mass-desc" value="sort-by-mass-desc"></button>
+					</div>
+					<div class="col text-center non-sortable border">Discovery facility</div>
+				</div>
 			</form>
-		  <tbody>
-		  	{% for planet_data in exoplanets_list %}
-		  		<tr>
-		  			<td>{{ planet_data.host_name }}</td>
-		  			<td>{{ planet_data.discovery_year }}</td>
-		  			<td>{{ planet_data.discovery_method }}</td>
-		  			<td>{{ planet_data.light_years }}</td>
-		  			<td>{{ planet_data.planet_mass|stringformat:".2e" }}</td>
-		  			<td>{{ planet_data.discovery_facility }}</td>
-		  		</tr>
-		  	{% endfor %}
-		  </tbody>
-		</table>
+			{% for planet_data in exoplanets_list %}
+				<div class="row">
+					<div class="col text-center border">{{ planet_data.host_name }}</div>
+					<div class="col text-center border">{{ planet_data.discovery_year }}</div>
+					<div class="col text-center border">{{ planet_data.discovery_method }}</div>
+					<div class="col text-center border">{{ planet_data.light_years }}</div>
+					<div class="col text-center border">{{ planet_data.planet_mass|stringformat:".2e" }}</div>
+					<div class="col text-center border">{{ planet_data.discovery_facility }}</div>
+				</div>
+			{% endfor %}
+		</div>
 
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
